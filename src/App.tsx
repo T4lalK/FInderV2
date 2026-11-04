@@ -1,4 +1,4 @@
-import styles from './App.module.css';
+import styles from './App.module.css';// Byt ut mot figama varianten
 import heroImg from './assets/hero.png';
 import reactLogo from './assets/react.svg';
 import viteLogo from './assets/vite.svg';
