@@ -65,7 +65,7 @@
   width: 48px;
   height: 48px;
   border-radius: var(--radius);
-  background: var(--secondary);
+  background: var(--gradient-primary);
   color: var(--primary);
 }
 
