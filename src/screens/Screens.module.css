@@ -235,6 +235,7 @@
   background: none;
   color: red;
   font-weight: 700;
+  text-decoration: underline;
 }
 
 .actions {
