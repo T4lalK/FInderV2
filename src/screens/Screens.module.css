@@ -262,7 +262,7 @@
   padding: 12px 16px;
   border: none;
   border-radius: var(--radius);
-  background: var(--primary);
+  background: var(--gradient-primary);
   box-shadow: var(--shadow-soft);
   color: var(--primary-foreground);
   font-weight: 700;
