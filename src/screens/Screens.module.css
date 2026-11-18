@@ -169,6 +169,45 @@
   font-size: 12px;
 }
 
+.quick {
+  margin-bottom: 16px;
+}
+
+.quickTitle {
+  margin-bottom: 8px;
+  color: var(--card);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 999px;
+  background: var(--card);
+  box-shadow: var(--shadow-soft);
+  color: var(--foreground);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.chip:hover {
+  filter: brightness(1.1);
+}
+
+.chipPlus {
+  color: var(--secondary);
+}
+
 .list {
   display: flex;
   flex-direction: column;

@@ -1,4 +1,4 @@
-import { onValue, ref, remove, set, update } from 'firebase/database';
+import { increment, onValue, ref, remove, set, update } from 'firebase/database';
 import { useEffect, useState } from 'react';
 
 import { DEFAULT_STORE_ID } from '../data/storeData';
@@ -17,6 +17,8 @@ interface StoredItem {
 
 const LIST_PATH = 'finder/list';
 const STORE_PATH = 'finder/storeId';
+/** How many times each product has been ticked off as bought: { productId: count }. */
+const HISTORY_PATH = 'finder/history';
 
 /**
  * Shared app state, stored in Firebase Realtime Database so the shopping list
@@ -25,6 +27,7 @@ const STORE_PATH = 'finder/storeId';
 export function useFinderData() {
   const [storeId, setStoreId] = useState(DEFAULT_STORE_ID);
   const [list, setList] = useState<ListItem[]>([]);
+  const [history, setHistory] = useState<Record<string, number>>({});
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -51,9 +54,14 @@ export function useFinderData() {
       const value = snapshot.val() as string | null;
       setStoreId(value ?? DEFAULT_STORE_ID);
     });
+    const unsubscribeHistory = onValue(ref(db, HISTORY_PATH), (snapshot) => {
+      const value = snapshot.val() as Record<string, number> | null;
+      setHistory(value ?? {});
+    });
     return () => {
       unsubscribeList();
       unsubscribeStore();
+      unsubscribeHistory();
     };
   }, []);
 
@@ -81,6 +89,10 @@ export function useFinderData() {
       return;
     }
     update(ref(db, `${LIST_PATH}/${id}`), { done: !item.done }).catch(handleError);
+    // Ticking a product off counts as buying it, so it can be suggested next time.
+    if (!item.done) {
+      update(ref(db, HISTORY_PATH), { [id]: increment(1) }).catch(handleError);
+    }
   }
 
   function clearList() {
@@ -90,6 +102,7 @@ export function useFinderData() {
   return {
     storeId,
     list,
+    history,
     error,
     selectStore,
     addItem,

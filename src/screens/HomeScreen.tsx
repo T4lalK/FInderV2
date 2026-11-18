@@ -25,7 +25,7 @@ export default function HomeScreen({ data, storeName, onNavigate }: HomeScreenPr
       screen: 'list',
       icon: 'list',
       title: 'Inköpslista',
-      subtitle: `${String(itemsLeft)} varor kvar`
+      subtitle: `${String(itemsLeft)} ${itemsLeft === 1 ? 'vara' : 'varor'} kvar`
     },
     {
       screen: 'map',

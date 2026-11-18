@@ -80,7 +80,8 @@ export const SECTIONS: Section[] = [
   { id: 'kontor', name: 'Kontor · Ljus · Batterier', x: 37.9, y: 49.9 },
   { id: 'vego', name: 'Vego', x: 97.4, y: 31.0 },
   { id: 'fardigmat', name: 'Färdigmat', x: 114.0, y: 57.0 },
-  { id: 'blommor', name: 'Blommor', x: 108.0, y: 64.3 }
+  { id: 'blommor', name: 'Blommor', x: 108.0, y: 64.3 },
+  { id: 'kassa', name: 'Kassan', x: 71.8, y: 70.3 }
 ];
 
 // prettier-ignore
@@ -136,7 +137,6 @@ export const PRODUCTS: Product[] = [
   // Fler varutyper från ICA Strömmens sortiment (foodora.se, 2026-11-18). Alla märken av
   // samma sorts vara är ihopslagna till en typ. section = ungefärlig hylla på kartan.
   // Mejeri
-  { id: 'a-fil', name: 'A-fil', section: 'mejeri', emoji: '🥛' },
   { id: 'apelsinjuice', name: 'Apelsinjuice', section: 'mejeri', emoji: '🍊' },
   { id: 'blabarssoppa', name: 'Blåbärssoppa', section: 'mejeri', emoji: '🫐' },
   { id: 'drickkvarg', name: 'Drickkvarg', section: 'mejeri', emoji: '🥣' },
@@ -347,11 +347,11 @@ export const PRODUCTS: Product[] = [
   { id: 'sirap', name: 'Sirap', section: 'kaffe', emoji: '🍯' },
   { id: 'snabbkaffe', name: 'Snabbkaffe', section: 'kaffe', emoji: '☕' },
   { id: 'strobrod', name: 'Ströbröd', section: 'kaffe', emoji: '🍞' },
+  { id: 'sotstro', name: 'Sötströ', section: 'kaffe', emoji: '🍬' },
   { id: 'tartdekoration', name: 'Tårtdekoration', section: 'kaffe', emoji: '🎂' },
   { id: 'vaniljsocker', name: 'Vaniljsocker', section: 'kaffe', emoji: '🍦' },
   { id: 'vafflor-strutar', name: 'Våfflor & strutar', section: 'kaffe', emoji: '🌾' },
   // Taco
-  { id: 'asiatiska-gronsaker', name: 'Asiatiska grönsaker', section: 'taco', emoji: '🥬' },
   { id: 'bao-buns', name: 'Bao buns', section: 'taco', emoji: '🥟' },
   { id: 'chilisas', name: 'Chilisås', section: 'taco', emoji: '🌶️' },
   { id: 'chipotlepasta', name: 'Chipotlepasta', section: 'taco', emoji: '🌶️' },
@@ -365,7 +365,6 @@ export const PRODUCTS: Product[] = [
   { id: 'sesamolja', name: 'Sesamolja', section: 'taco', emoji: '🫒' },
   { id: 'sojasas', name: 'Sojasås', section: 'taco', emoji: '🫙' },
   { id: 'sriracha-mayo', name: 'Sriracha mayo', section: 'taco', emoji: '🌶️' },
-  { id: 'sotstro', name: 'Sötströ', section: 'taco', emoji: '🍬' },
   { id: 'tacokit', name: 'Tacokit', section: 'taco', emoji: '🌮' },
   { id: 'tacoskal', name: 'Tacoskal', section: 'taco', emoji: '🌮' },
   { id: 'tacosas', name: 'Tacosås', section: 'taco', emoji: '🌮' },
@@ -417,6 +416,7 @@ export const PRODUCTS: Product[] = [
   { id: 'tunnbrod-polarbrod', name: 'Tunnbröd & polarbröd', section: 'brod', emoji: '🫓' },
   { id: 'wienerbrod', name: 'Wienerbröd', section: 'brod', emoji: '🥐' },
   // Frukt & grönt
+  { id: 'asiatiska-gronsaker', name: 'Asiatiska grönsaker', section: 'frukt', emoji: '🥬' },
   { id: 'apelsiner', name: 'Apelsiner', section: 'frukt', emoji: '🍊' },
   { id: 'basilika', name: 'Basilika', section: 'frukt', emoji: '🌿' },
   { id: 'bjornbar', name: 'Björnbär', section: 'frukt', emoji: '🫐' },
@@ -512,7 +512,6 @@ export const PRODUCTS: Product[] = [
   { id: 'chokladbit', name: 'Chokladbit', section: 'godis', emoji: '🍫' },
   { id: 'chokladkaka', name: 'Chokladkaka', section: 'godis', emoji: '🍫' },
   { id: 'godispase', name: 'Godispåse', section: 'godis', emoji: '🍬' },
-  { id: 'halstabletter-tuggummi', name: 'Halstabletter & tuggummi', section: 'godis', emoji: '🍬' },
   { id: 'klubbor', name: 'Klubbor', section: 'godis', emoji: '🍬' },
   { id: 'lakrits', name: 'Lakrits', section: 'godis', emoji: '🍬' },
   { id: 'marshmallows', name: 'Marshmallows', section: 'godis', emoji: '🍬' },
@@ -533,7 +532,6 @@ export const PRODUCTS: Product[] = [
   { id: 'hudkram', name: 'Hudkräm', section: 'hygien', emoji: '🧴' },
   { id: 'harfarg', name: 'Hårfärg', section: 'hygien', emoji: '🧴' },
   { id: 'harstyling', name: 'Hårstyling', section: 'hygien', emoji: '🧴' },
-  { id: 'kondomer', name: 'Kondomer', section: 'hygien', emoji: '🧴' },
   { id: 'lappbalsam', name: 'Läppbalsam', section: 'hygien', emoji: '🧴' },
   { id: 'modersmjolksersattning', name: 'Modersmjölksersättning', section: 'hygien', emoji: '🥛' },
   { id: 'munskolj', name: 'Munskölj', section: 'hygien', emoji: '🪥' },
@@ -664,7 +662,10 @@ export const PRODUCTS: Product[] = [
   { id: 'roror-sallader', name: 'Röror & sallader', section: 'fardigmat', emoji: '🥬' },
   { id: 'smordeg', name: 'Smördeg', section: 'fardigmat', emoji: '🥐' },
   // Blommor
-  { id: 'grillkol-briketter', name: 'Grillkol & briketter', section: 'blommor', emoji: '🔥' }
+  { id: 'grillkol-briketter', name: 'Grillkol & briketter', section: 'blommor', emoji: '🔥' },
+  // Kassan
+  { id: 'halstabletter-tuggummi', name: 'Halstabletter & tuggummi', section: 'kassa', emoji: '🍬' },
+  { id: 'kondomer', name: 'Kondomer', section: 'kassa', emoji: '🧴' }
 ];
 
 export function sectionById(id: string): Section | undefined {

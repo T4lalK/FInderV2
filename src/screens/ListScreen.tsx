@@ -2,9 +2,28 @@ import { useState } from 'react';
 
 import Icon from '../components/Icon';
 import { type Screen } from '../components/TabBar';
-import { productById, PRODUCTS, sectionById } from '../data/storeData';
+import { type Product, productById, PRODUCTS, sectionById } from '../data/storeData';
 import { type FinderData } from '../hooks/useFinderData';
 import styles from './Screens.module.css';
+
+// Everyday products shown before anything has been bought, and to fill up the quick picks.
+const COMMON_IDS = [
+  'mjolk',
+  'brod',
+  'agg',
+  'smor',
+  'bananer',
+  'ost-hushall',
+  'kaffe',
+  'pasta',
+  'kottfars',
+  'yoghurt',
+  'applen',
+  'potatis',
+  'tomater',
+  'gurka'
+];
+const QUICK_PICKS = 8;
 
 interface ListScreenProps {
   data: FinderData;
@@ -13,7 +32,7 @@ interface ListScreenProps {
 
 export default function ListScreen({ data, onNavigate }: ListScreenProps) {
   const [query, setQuery] = useState('');
-  const { list, addItem, removeItem, toggleItem, clearList } = data;
+  const { list, history, addItem, removeItem, toggleItem, clearList } = data;
 
   // Best matches first: names that start with the search, then names with the search as a
   // whole word, then a word that starts with it, then names that only contain it.
@@ -43,6 +62,50 @@ export default function ListScreen({ data, onNavigate }: ListScreenProps) {
         // The store has thousands of products: show the 50 best matches.
         .slice(0, 50)
     : [];
+
+  // Quick picks: what has been bought most often, then everyday products.
+  // A product that is already on the list is not shown, so it disappears when added.
+  const onList = (id: string) => list.some((item) => item.id === id);
+  const boughtBefore = Object.entries(history)
+    .sort((a, b) => b[1] - a[1])
+    .map(([id]) => productById(id))
+    .filter((product): product is Product => product !== undefined && !onList(product.id))
+    .slice(0, QUICK_PICKS);
+  const common = COMMON_IDS.map(productById)
+    .filter(
+      (product): product is Product =>
+        product !== undefined &&
+        !onList(product.id) &&
+        !boughtBefore.some((bought) => bought.id === product.id)
+    )
+    .slice(0, Math.max(0, QUICK_PICKS - boughtBefore.length));
+
+  function quickPicks(title: string, products: Product[]) {
+    if (products.length === 0) {
+      return null;
+    }
+    return (
+      <section className={styles.quick}>
+        <h3 className={styles.quickTitle}>{title}</h3>
+        <div className={styles.chips}>
+          {products.map((product) => (
+            <button
+              key={product.id}
+              type="button"
+              className={styles.chip}
+              onClick={() => {
+                addItem(product.id);
+              }}
+            >
+              <span>{product.emoji}</span>
+              {product.name}
+              <Icon name="plus" size={14} className={styles.chipPlus} />
+            </button>
+          ))}
+        </div>
+      </section>
+    );
+  }
 
   return (
     <>
@@ -82,6 +145,9 @@ export default function ListScreen({ data, onNavigate }: ListScreenProps) {
           </ul>
         )}
       </div>
+
+      {!search && quickPicks('Köpt tidigare', boughtBefore)}
+      {!search && quickPicks('Vanliga varor', common)}
 
       {list.length === 0 ? (
         <p className={styles.empty}>Listan är tom. Sök efter en vara ovan.</p>
