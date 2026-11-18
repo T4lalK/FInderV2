@@ -86,8 +86,8 @@ export const FIXTURES: Fixture[] = [
   { x: 0.3, y: 29.5, w: 3.7, h: 22.6, kind: 'frozen', label: 'Djupfryst' },
   { x: 8.1, y: 9.8, w: 7.4, h: 16.8, kind: 'frozen', label: 'Frysbox' },
   { x: 19.2, y: 9.8, w: 7.4, h: 16.8, kind: 'frozen', label: 'Frysbox' },
-  { x: 8.9, y: 31.0, w: 7.4, h: 16.8, kind: 'frozen', label: 'Frysbox' },
-  { x: 20.0, y: 31.0, w: 7.1, h: 16.8, kind: 'frozen', label: 'Frysbox' },
+  { x: 8.1, y: 31.0, w: 7.4, h: 16.8, kind: 'frozen', label: 'Frysbox' },
+  { x: 19.2, y: 31.0, w: 7.4, h: 16.8, kind: 'frozen', label: 'Frysbox' },
   {
     x: 0.5,
     y: 51.5,
@@ -125,7 +125,7 @@ export const FIXTURES: Fixture[] = [
     label: 'Pålägg · Ost',
     labelOffset: [2.0, 0]
   },
-  { x: 70.2, y: 9.5, w: 3.7, h: 3.3, kind: 'unknown', label: '?' },
+  { x: 70.2, y: 9.5, w: 3.7, h: 3.3, kind: 'cold', label: 'Kyl' },
   { x: 69.9, y: 15.1, w: 4.7, h: 17.8, kind: 'deli', label: 'Picadeli' },
   { x: 69.9, y: 37.1, w: 5.0, h: 9.9, kind: 'bread', label: 'Bröd' },
   {
@@ -170,7 +170,8 @@ export const FIXTURES: Fixture[] = [
     label: 'Självscan',
     seamless: true
   },
-  { x: 79.6, y: 55.4, w: 6.1, h: 12.3, kind: 'checkout', seamless: true },
+  // Overlaps Självscan a little so the two read as one block with no seam between them.
+  { x: 79.6, y: 55.4, w: 6.5, h: 11.9, kind: 'checkout', seamless: true },
   {
     x: 99.0,
     y: 62.0,
