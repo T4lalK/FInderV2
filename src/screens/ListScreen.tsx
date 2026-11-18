@@ -26,7 +26,7 @@ export default function ListScreen({ data, onNavigate }: ListScreenProps) {
   return (
     <>
       <div className={styles.search}>
-        <Icon name="search" size={16} className={styles.searchIcon} />
+        <Icon name="search" size={25} className={styles.searchIcon} />
         <input
           type="search"
           className={styles.searchInput}
