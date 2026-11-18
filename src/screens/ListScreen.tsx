@@ -15,12 +15,25 @@ export default function ListScreen({ data, onNavigate }: ListScreenProps) {
   const [query, setQuery] = useState('');
   const { list, addItem, removeItem, toggleItem, clearList } = data;
 
-  const matches = query
+  // Best matches first: names that start with the search, then names with a word that
+  // starts with it, then names that only contain it. Same rank: alphabetical (å, ä, ö last).
+  const search = query.trim().toLowerCase();
+  const rank = (name: string): number => {
+    const lower = name.toLowerCase();
+    if (lower.startsWith(search)) {
+      return 0;
+    }
+    if (lower.split(/[\s-]+/).some((word) => word.startsWith(search))) {
+      return 1;
+    }
+    return 2;
+  };
+  const matches = search
     ? PRODUCTS.filter(
         (product) =>
-          product.name.toLowerCase().includes(query.toLowerCase()) &&
+          product.name.toLowerCase().includes(search) &&
           !list.some((item) => item.id === product.id)
-      )
+      ).sort((a, b) => rank(a.name) - rank(b.name) || a.name.localeCompare(b.name, 'sv'))
     : [];
 
   return (

@@ -268,73 +268,7 @@
   font-weight: 700;
 }
 
-/* Map */
-.map {
-  overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: 24px;
-  background: var(--map-floor);
-  box-shadow: var(--shadow-soft);
-}
-
-.mapSvg {
-  display: block;
-  width: 100%;
-}
-
-.shelf {
-  fill: var(--map-shelf);
-}
-
-.sectionLabel {
-  fill: var(--muted-foreground);
-  font-size: 3.2px;
-  font-weight: 700;
-}
-
-.route {
-  fill: none;
-  stroke: var(--primary);
-  stroke-width: 1.4;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-dasharray: 600;
-  stroke-dashoffset: 600;
-  animation: draw 2.2s ease-out forwards;
-}
-
-@keyframes draw {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-.entrance {
-  fill: var(--success);
-}
-
-.entranceLabel {
-  fill: var(--success);
-  font-size: 3px;
-  font-weight: 700;
-}
-
-.checkoutLabel {
-  fill: var(--foreground);
-  font-size: 3px;
-  font-weight: 700;
-}
-
-.stopDot {
-  fill: var(--primary);
-}
-
-.stopNumber {
-  fill: var(--primary-foreground);
-  font-size: 3.4px;
-  font-weight: 800;
-}
-
+/* Map steps (the map itself is styled in components/StoreMap.module.css) */
 .steps {
   display: flex;
   flex-direction: column;
@@ -365,7 +299,7 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: var(--primary);
+  background: var(--secondary);
   color: var(--primary-foreground);
   font-size: 12px;
   font-weight: 800;

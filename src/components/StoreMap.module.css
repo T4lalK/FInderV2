@@ -1,0 +1,242 @@
+/* Store map – same green/orange theme as the rest of the app */
+.map {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  background: var(--card);
+  box-shadow: var(--shadow-soft);
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  max-height: 70svh;
+  cursor: grab;
+  user-select: none;
+}
+
+.svg:active {
+  cursor: grabbing;
+}
+
+.floor {
+  fill: #46695a;
+}
+
+.tiles {
+  stroke: rgba(252, 240, 214, 0.07);
+}
+
+.wall {
+  fill: none;
+  stroke: var(--foreground);
+  stroke-linejoin: round;
+}
+
+.door {
+  stroke: var(--secondary);
+  stroke-linecap: round;
+}
+
+/* Fixtures: the colour says what it is */
+.piece {
+  stroke: rgba(20, 40, 28, 0.35);
+  stroke-width: 0.25;
+}
+
+.seamless {
+  stroke: none;
+}
+
+.cold {
+  fill: #a9d6e8;
+}
+
+.frozen {
+  fill: #d6ecf7;
+}
+
+.shelf {
+  fill: #ead9b4;
+}
+
+.produce {
+  fill: #a9d48d;
+}
+
+.counter {
+  fill: #f3b680;
+}
+
+.deli {
+  fill: #f0a96b;
+}
+
+.bread {
+  fill: #e6c47a;
+}
+
+.cafe {
+  fill: #e8a3a0;
+}
+
+.checkout {
+  fill: var(--secondary);
+}
+
+.unknown {
+  fill: none;
+  stroke: var(--foreground);
+  stroke-dasharray: 0.8 0.6;
+  stroke-width: 0.35;
+}
+
+.pillar {
+  fill: var(--foreground);
+}
+
+.glass {
+  fill: rgba(255, 255, 255, 0.7);
+}
+
+.bay {
+  stroke: rgba(29, 51, 38, 0.18);
+  stroke-width: 0.18;
+}
+
+.label {
+  fill: #1d3326;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  pointer-events: none;
+}
+
+.labelLight {
+  fill: #fff;
+}
+
+/* Labels written beside thin pieces get a halo so they read on the floor */
+.labelOutside {
+  fill: var(--foreground);
+  paint-order: stroke;
+  stroke: var(--card);
+  stroke-width: 0.7px;
+  stroke-linejoin: round;
+}
+
+.aisleLabel {
+  fill: var(--muted-foreground);
+  font-style: italic;
+  font-weight: 600;
+  pointer-events: none;
+}
+
+.route {
+  fill: none;
+  stroke: var(--secondary);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 700;
+  stroke-dashoffset: 700;
+  animation: draw 2.4s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .route {
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+}
+
+.entrance {
+  fill: var(--muted-foreground);
+  stroke: var(--card);
+}
+
+.stopDot {
+  fill: var(--secondary);
+  stroke: var(--foreground);
+}
+
+.stopNumber {
+  fill: var(--primary-foreground);
+  font-weight: 800;
+  pointer-events: none;
+}
+
+/* Bar under the map: legend to the left, zoom buttons to the right */
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px 4px 16px;
+}
+
+.controls {
+  display: flex;
+  gap: 6px;
+}
+
+.control {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(252, 240, 214, 0.25);
+  border-radius: 12px;
+  background: rgba(30, 66, 44, 0.85);
+  color: var(--foreground);
+}
+
+.control:disabled {
+  cursor: default;
+  opacity: 0.4;
+}
+
+.control:focus-visible {
+  outline: 2px solid var(--secondary);
+  outline-offset: 2px;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  color: var(--muted-foreground);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.legend span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legendDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--muted-foreground);
+}
+
+.legendLine {
+  width: 18px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--secondary);
+}
+
+.hint {
+  padding: 0 16px 12px;
+  color: var(--muted-foreground);
+  font-size: 12px;
+}

@@ -47,45 +47,27 @@ export const STORES: Store[] = [
 
 export const DEFAULT_STORE_ID = 'ica-nara-strommen';
 
-// Map coordinates in a 108 x 134 grid, based on the group's sketch of ICA Nära Strömmen.
-export const ENTRANCE: Point = { x: 90, y: 124 };
-export const CHECKOUT: Point = { x: 14, y: 74 };
+// Where each section is on the floor plan (src/data/storeMap.ts), in floor tiles.
+// The point is in the aisle in front of the section, so the route can stop there.
+export const ENTRANCE: Point = { x: 113.5, y: 76.5 };
+export const CHECKOUT: Point = { x: 71.8, y: 70.3 };
 
 export const SECTIONS: Section[] = [
-  { id: 'frys', name: 'Frys', x: 55, y: 30 },
-  { id: 'skafferi', name: 'Skafferi', x: 55, y: 48 },
-  { id: 'brod', name: 'Bröd & kaffe', x: 18, y: 40 },
-  { id: 'mejeri', name: 'Mejeri', x: 88, y: 28 },
-  { id: 'taco', name: 'Tex-Mex', x: 88, y: 55 },
-  { id: 'picadeli', name: 'Picadeli', x: 57, y: 64 },
-  { id: 'pant', name: 'Pant', x: 88, y: 76 },
-  { id: 'chark', name: 'Chark', x: 30, y: 98 },
-  { id: 'frukt', name: 'Frukt & grönt', x: 62, y: 98 },
-  { id: 'kott', name: 'Kött', x: 47, y: 120 },
-  { id: 'ost', name: 'Ost', x: 66, y: 120 }
-];
-
-// Shelves drawn from the group's sketch: [x, y, width, height].
-export const SHELVES: [number, number, number, number][] = [
-  [36, 24, 38, 10],
-  [40, 40, 30, 1.5],
-  [40, 45, 30, 1.5],
-  [40, 50, 30, 1.5],
-  [40, 55, 30, 1.5],
-  [50, 61, 14, 1.5],
-  [12, 18, 1.5, 50],
-  [12, 18, 22, 1.5],
-  [96, 20, 1.5, 60],
-  [76, 80, 22, 1.5],
-  [76, 80, 1.5, 44],
-  [46, 88, 1.5, 22],
-  [54, 88, 1.5, 22],
-  [62, 88, 1.5, 22],
-  [28, 106, 18, 1.5],
-  [44, 112, 18, 1.5],
-  [36, 124, 40, 1.5],
-  [12, 72, 20, 4],
-  [62, 6, 12, 8]
+  { id: 'mejeri', name: 'Mejeri', x: 40.9, y: 6.0 },
+  { id: 'frys', name: 'Djupfryst', x: 6.1, y: 28.9 },
+  { id: 'pasta', name: 'Pasta · Konserver', x: 20.7, y: 49.8 },
+  { id: 'kryddor', name: 'Kryddor · Olja', x: 47.2, y: 18.5 },
+  { id: 'hartbrod', name: 'Hårt bröd · Flingor', x: 53.8, y: 18.6 },
+  { id: 'kaffe', name: 'Kaffe · Te · Bakning', x: 53.8, y: 39.9 },
+  { id: 'taco', name: 'Taco', x: 77.5, y: 7.1 },
+  { id: 'picadeli', name: 'Picadeli', x: 67.7, y: 22.2 },
+  { id: 'ost', name: 'Ost · pålägg', x: 67.7, y: 31.2 },
+  { id: 'brod', name: 'Bröd', x: 67.7, y: 42.4 },
+  { id: 'pant', name: 'Pant', x: 85.1, y: 7.6 },
+  { id: 'frukt', name: 'Frukt & grönt', x: 101.8, y: 17.3 },
+  { id: 'potatis', name: 'Potatis & lök', x: 125.3, y: 17.4 },
+  { id: 'kott', name: 'Färskvaror · kött', x: 126.0, y: 31.0 },
+  { id: 'chark', name: 'Chark', x: 114.7, y: 32.0 }
 ];
 
 export const PRODUCTS: Product[] = [
@@ -110,9 +92,9 @@ export const PRODUCTS: Product[] = [
   { id: 'applen', name: 'Äpplen', section: 'frukt', emoji: '🍎' },
   { id: 'tomater', name: 'Tomater', section: 'frukt', emoji: '🍅' },
   { id: 'gurka', name: 'Gurka', section: 'frukt', emoji: '🥒' },
-  { id: 'lok', name: 'Gul lök', section: 'frukt', emoji: '🧅' },
-  { id: 'vitlok', name: 'Vitlök', section: 'frukt', emoji: '🧄' },
-  { id: 'potatis', name: 'Potatis', section: 'frukt', emoji: '🥔' },
+  { id: 'lok', name: 'Gul lök', section: 'potatis', emoji: '🧅' },
+  { id: 'vitlok', name: 'Vitlök', section: 'potatis', emoji: '🧄' },
+  { id: 'potatis', name: 'Potatis', section: 'potatis', emoji: '🥔' },
   { id: 'sallad', name: 'Isbergssallad', section: 'frukt', emoji: '🥬' },
   { id: 'avokado', name: 'Avokado', section: 'frukt', emoji: '🥑' },
   { id: 'paprika', name: 'Paprika', section: 'frukt', emoji: '🫑' },
@@ -120,17 +102,17 @@ export const PRODUCTS: Product[] = [
   { id: 'tacokrydda', name: 'Tacokrydda', section: 'taco', emoji: '🌶️' },
   { id: 'salsa', name: 'Salsa', section: 'taco', emoji: '🫙' },
   { id: 'nachos', name: 'Nachochips', section: 'taco', emoji: '🌽' },
-  { id: 'pasta', name: 'Pasta', section: 'skafferi', emoji: '🍝' },
-  { id: 'ris', name: 'Ris', section: 'skafferi', emoji: '🍚' },
-  { id: 'krossade-tomater', name: 'Krossade tomater', section: 'skafferi', emoji: '🥫' },
-  { id: 'havregryn', name: 'Havregryn', section: 'skafferi', emoji: '🥣' },
-  { id: 'mjol', name: 'Vetemjöl', section: 'skafferi', emoji: '🌾' },
-  { id: 'socker', name: 'Socker', section: 'skafferi', emoji: '🍬' },
-  { id: 'olja', name: 'Rapsolja', section: 'skafferi', emoji: '🫒' },
+  { id: 'pasta', name: 'Pasta', section: 'pasta', emoji: '🍝' },
+  { id: 'ris', name: 'Ris', section: 'pasta', emoji: '🍚' },
+  { id: 'krossade-tomater', name: 'Krossade tomater', section: 'pasta', emoji: '🥫' },
+  { id: 'havregryn', name: 'Havregryn', section: 'hartbrod', emoji: '🥣' },
+  { id: 'mjol', name: 'Vetemjöl', section: 'kaffe', emoji: '🌾' },
+  { id: 'socker', name: 'Socker', section: 'kaffe', emoji: '🍬' },
+  { id: 'olja', name: 'Rapsolja', section: 'kryddor', emoji: '🫒' },
   { id: 'brod', name: 'Bröd', section: 'brod', emoji: '🍞' },
-  { id: 'knackebrod', name: 'Knäckebröd', section: 'brod', emoji: '🍘' },
-  { id: 'kaffe', name: 'Kaffe', section: 'brod', emoji: '☕' },
-  { id: 'te', name: 'Te', section: 'brod', emoji: '🍵' },
+  { id: 'knackebrod', name: 'Knäckebröd', section: 'hartbrod', emoji: '🍘' },
+  { id: 'kaffe', name: 'Kaffe', section: 'kaffe', emoji: '☕' },
+  { id: 'te', name: 'Te', section: 'kaffe', emoji: '🍵' },
   { id: 'glass', name: 'Glass', section: 'frys', emoji: '🍨' },
   { id: 'frysta-arter', name: 'Frysta ärtor', section: 'frys', emoji: '🟢' },
   { id: 'fiskpinnar', name: 'Fiskpinnar', section: 'frys', emoji: '🐟' },
@@ -150,30 +132,14 @@ export function storeById(id: string): Store | undefined {
   return STORES.find((store) => store.id === id);
 }
 
-function distance(a: Point, b: Point): number {
-  return Math.abs(a.x - b.x) + Math.abs(a.y - b.y);
-}
-
-/** Orders the sections needed for the list: nearest-first from the entrance. */
-export function planRoute(productIds: string[]): Section[] {
-  const neededIds = new Set<string>();
+/** The sections needed for a list of products, each listed once. */
+export function sectionsFor(productIds: string[]): Section[] {
+  const ids = new Set<string>();
   for (const id of productIds) {
     const product = productById(id);
     if (product) {
-      neededIds.add(product.section);
+      ids.add(product.section);
     }
   }
-  const left = SECTIONS.filter((section) => neededIds.has(section.id));
-  const route: Section[] = [];
-  let position: Point = ENTRANCE;
-  while (left.length > 0) {
-    left.sort((a, b) => distance(position, a) - distance(position, b));
-    const next = left.shift();
-    if (!next) {
-      break;
-    }
-    route.push(next);
-    position = next;
-  }
-  return route;
+  return SECTIONS.filter((section) => ids.has(section.id));
 }
