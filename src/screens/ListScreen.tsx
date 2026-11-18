@@ -15,25 +15,33 @@ export default function ListScreen({ data, onNavigate }: ListScreenProps) {
   const [query, setQuery] = useState('');
   const { list, addItem, removeItem, toggleItem, clearList } = data;
 
-  // Best matches first: names that start with the search, then names with a word that
-  // starts with it, then names that only contain it. Same rank: alphabetical (å, ä, ö last).
+  // Best matches first: names that start with the search, then names with the search as a
+  // whole word, then a word that starts with it, then names that only contain it.
+  // Same rank: alphabetical (å, ä, ö last).
   const search = query.trim().toLowerCase();
   const rank = (name: string): number => {
     const lower = name.toLowerCase();
     if (lower.startsWith(search)) {
       return 0;
     }
-    if (lower.split(/[\s-]+/).some((word) => word.startsWith(search))) {
+    const words = lower.split(/[\s-]+/);
+    if (words.includes(search)) {
       return 1;
     }
-    return 2;
+    if (words.some((word) => word.startsWith(search))) {
+      return 2;
+    }
+    return 3;
   };
   const matches = search
     ? PRODUCTS.filter(
         (product) =>
           product.name.toLowerCase().includes(search) &&
           !list.some((item) => item.id === product.id)
-      ).sort((a, b) => rank(a.name) - rank(b.name) || a.name.localeCompare(b.name, 'sv'))
+      )
+        .sort((a, b) => rank(a.name) - rank(b.name) || a.name.localeCompare(b.name, 'sv'))
+        // The store has thousands of products: show the 50 best matches.
+        .slice(0, 50)
     : [];
 
   return (
