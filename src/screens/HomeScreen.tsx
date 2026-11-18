@@ -11,8 +11,15 @@ interface HomeScreenProps {
 
 export default function HomeScreen({ data, storeName, onNavigate }: HomeScreenProps) {
   const itemsLeft = data.list.filter((item) => !item.done).length;
+  const listIsEmpty = itemsLeft === 0;
 
-  const items: { screen: Screen; icon: IconName; title: string; subtitle: string }[] = [
+  const items: {
+    screen: Screen;
+    icon: IconName;
+    title: string;
+    subtitle: string;
+    disabled?: boolean;
+  }[] = [
     { screen: 'stores', icon: 'store', title: 'Välj butik', subtitle: storeName },
     {
       screen: 'list',
@@ -24,7 +31,8 @@ export default function HomeScreen({ data, storeName, onNavigate }: HomeScreenPr
       screen: 'map',
       icon: 'map',
       title: 'Visa vägen',
-      subtitle: 'Snabbaste rundan i butiken'
+      subtitle: listIsEmpty ? 'Lägg till varor först' : 'Snabbaste rundan i butiken',
+      disabled: listIsEmpty
     }
   ];
 
@@ -42,6 +50,7 @@ export default function HomeScreen({ data, storeName, onNavigate }: HomeScreenPr
             key={item.screen}
             type="button"
             className={styles.row}
+            disabled={item.disabled}
             onClick={() => {
               onNavigate(item.screen);
             }}
